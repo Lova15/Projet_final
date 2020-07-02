@@ -1,0 +1,71 @@
+  [1m[35m (2113.2ms)[0m  [1m[35mCREATE DATABASE "E_Travel_development" ENCODING = 'unicode'[0m
+  [1m[35m (1334.4ms)[0m  [1m[35mCREATE DATABASE "E_Travel_test" ENCODING = 'unicode'[0m
+  [1m[35m (465.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (110.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8043698590243019760)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateCompanies (20200702080245)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (104.2ms)[0m  [1m[35mCREATE TABLE "companies" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "logo" character varying, "location" character varying, "service" character varying, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (78.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_companies_on_email" ON "companies"  ("email")[0m
+  [1m[35m (88.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_companies_on_reset_password_token" ON "companies"  ("reset_password_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702080245"]]
+  [1m[35m (17.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateAdmins (20200702080258)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (160.8ms)[0m  [1m[35mCREATE TABLE "admins" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (60.4ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_admins_on_email" ON "admins"  ("email")[0m
+  [1m[35m (46.8ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_admins_on_reset_password_token" ON "admins"  ("reset_password_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702080258"]]
+  [1m[35m (70.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20200702080326)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (129.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "lastname" character varying, "avatar" character varying, "CIN" integer, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "remember_created_at" timestamp, "confirmation_token" character varying, "confirmed_at" timestamp, "confirmation_sent_at" timestamp, "unconfirmed_email" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (55.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (38.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702080326"]]
+  [1m[35m (14.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateVehicules (20200702085234)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (94.1ms)[0m  [1m[35mCREATE TABLE "vehicules" ("id" bigserial primary key, "drivername" character varying, "phone_number" integer, "matricule" character varying, "place" integer, "voiture" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702085234"]]
+  [1m[35m (20.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateVoyages (20200702085245)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (128.9ms)[0m  [1m[35mCREATE TABLE "voyages" ("id" bigserial primary key, "depart" character varying, "arriver" character varying, "date_prevu" timestamp, "price" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702085245"]]
+  [1m[35m (19.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTickets (20200702090152)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (173.7ms)[0m  [1m[35mCREATE TABLE "tickets" ("id" bigserial primary key, "label" character varying, "voyage_id" bigint NOT NULL, "vehicule_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_91d4aee6b5"
+FOREIGN KEY ("voyage_id")
+  REFERENCES "voyages" ("id")
+, CONSTRAINT "fk_rails_75c22a26a9"
+FOREIGN KEY ("vehicule_id")
+  REFERENCES "vehicules" ("id")
+)[0m
+  [1m[35m (45.2ms)[0m  [1m[35mCREATE  INDEX  "index_tickets_on_voyage_id" ON "tickets"  ("voyage_id")[0m
+  [1m[35m (39.0ms)[0m  [1m[35mCREATE  INDEX  "index_tickets_on_vehicule_id" ON "tickets"  ("vehicule_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702090152"]]
+  [1m[35m (16.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-02 09:02:39.102873"], ["updated_at", "2020-07-02 09:02:39.102873"]]
+  [1m[35m (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(8043698590243019760)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8043698590243019760)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddCompanyToVehicule (20200702090435)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "vehicules" ADD "company_id" bigint NOT NULL[0m
+  [1m[35m (51.2ms)[0m  [1m[35mCREATE  INDEX  "index_vehicules_on_company_id" ON "vehicules"  ("company_id")[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "vehicules" ADD CONSTRAINT "fk_rails_020216e4d2"
+FOREIGN KEY ("company_id")
+  REFERENCES "companies" ("id")
+[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200702090435"]]
+  [1m[35m (16.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(8043698590243019760)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
